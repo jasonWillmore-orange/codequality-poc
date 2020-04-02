@@ -1,4 +1,4 @@
-version: 2 # use CircleCI 2.0
+version: 2.1 # use CircleCI 2.0
 jobs:
   build:
     docker:
@@ -8,7 +8,7 @@ jobs:
 
       - restore_cache: # special step to restore the dependency cache
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          keys: 
+          keys:
             - v1-repo-{{ checksum "package-lock.json" }}
 
       - run:
@@ -25,14 +25,20 @@ jobs:
           # Runs jest with "--maxWorkers=2" argument to avoid OOM issues
           command: npm test # replace with `yarn test` if using yarn
 
-      - store_artifacts: 
+      - sonarcloud/scan
+
+      - store_artifacts:
           path: test-results
 
       - store_test_results:
           path: test-results
 
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.1
+
 workflows:
   version: 2
   Build and Test:
     jobs:
-      - build
+      - build:
+          context: quotecenter

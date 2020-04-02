@@ -17,6 +17,14 @@ export const getNextQuestion = (state => {
     return state.questions[nextQuestion];
 });
 
+export const heresSomeAwfulCode = () => {
+    let stuff = 'abcdefg';
+    for (let x = stuff.length; x < 10; x++) {
+        stuff = x;
+    }
+    return 'nothing to see here';
+}
+
 export const getGameState = (state => {
     if (state.onScreen === WELCOME) {
         return WELCOME;
