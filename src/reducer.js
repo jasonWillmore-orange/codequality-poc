@@ -23,6 +23,16 @@ const generateQuestions = () => {
     return freshQuestionSet;
 }
 
+
+const doOtherThing = (x) => {
+    if (x>0) {
+        return x;
+    } else {
+        return 0;
+    }
+
+}
+
 const generateQuestionOrder = () => {
     const allQuestions = [];
     const questionOrder = [];
@@ -34,6 +44,9 @@ const generateQuestionOrder = () => {
         _.pull(allQuestions, nextQuestion);
         questionOrder.push(nextQuestion);
     }
+
+    doOtherThing(5)
+
     return questionOrder;
 }
 
